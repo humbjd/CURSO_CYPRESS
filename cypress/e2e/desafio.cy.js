@@ -6,10 +6,20 @@ import register_page from '../support/pages/register_page'
 const user_data_valid = require('../fixtures/desafio_valid_data.json')
 const user_data_invalid = require('../fixtures/desafio_invalid_data.json')
 
+const screens = ['desktop', 'iphone-x', 'iphone-6']
+
+screens.forEach(element => {
+    
+
+
 describe('Teste de conhecimento - Feature: CADASTRO DE USUARIO', () => {
     
     beforeEach(() => {
-        
+
+        if(element != 'desktop') {
+        cy.viewport(element)
+        }   
+
         home_page.accessRegisterPage()
         
 
@@ -103,4 +113,5 @@ describe('Teste de conhecimento - Feature: CADASTRO DE USUARIO', () => {
             .should('have.text', `Bem-vindo ${randomName}`)
             
     })
-})
+    })
+});
